@@ -3,6 +3,7 @@ package ccc.keewedomain.persistence.domain.user;
 import ccc.keewecore.consts.KeeweRtnConsts;
 import ccc.keewecore.exception.KeeweException;
 import ccc.keewedomain.dto.user.UserSignUpDto;
+import ccc.keewedomain.persistence.converter.StringCryptoConverter;
 import ccc.keewedomain.persistence.domain.common.BaseTimeEntity;
 import ccc.keewedomain.persistence.domain.common.Interest;
 import ccc.keewedomain.persistence.domain.title.Title;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -54,6 +56,7 @@ public class User extends BaseTimeEntity {
     private VendorType vendorType;
 
     @Column(name = "email")
+    @Convert(converter = StringCryptoConverter.class)
     private String email; // 아이디
 
     @Column(name = "password")
